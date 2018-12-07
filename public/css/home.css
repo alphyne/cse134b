@@ -89,8 +89,8 @@ table {
     color: white;
     padding: 24px 32px;
     background-color: inherit;
-    font-family: inherit; /* Important for vertical align on mobile phones */
-    margin: 0; /* Important for vertical align on mobile phones */
+    font-family: inherit; 
+    margin: 0; 
   }
   
   /* Add a red background color to navbar links on hover */
@@ -104,7 +104,6 @@ table {
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
   }
   
