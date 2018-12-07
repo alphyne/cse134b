@@ -1,12 +1,12 @@
 var config = {
-    apiKey: "AIzaSyAjGwX6R2o2buRFkjAgWm0U8oLVC17q1qw",
-    authDomain: "example-database-cse134b.firebaseapp.com",
-    databaseURL: "https://example-database-cse134b.firebaseio.com",
-    projectId: "example-database-cse134b",
-    storageBucket: "example-database-cse134b.appspot.com",
-    messagingSenderId: "680825949342"
+    apiKey: "AIzaSyB5c9mjm-mf1eViUdp-jc-PFcr8bTFgLTg",
+    authDomain: "mememaster-ej.firebaseapp.com",
+    databaseURL: "https://mememaster-ej.firebaseio.com",
+    projectId: "mememaster-ej",
+    storageBucket: "mememaster-ej.appspot.com",
+    messagingSenderId: "815545865797"
   };
- firebase.initializeApp(config);
+  firebase.initializeApp(config);
 //Initizae the firebase app
 
 var email="test@test.com"
