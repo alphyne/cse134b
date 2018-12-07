@@ -34,16 +34,20 @@
             <h1>Create Meme</h1>
         </div>
 
-        <form>
-        <div class="input-field-container">
-                <p>Title <input type="text"></p>
-                <p>Keywords <input type="text"></p>
-                <p>Text (Top) <input type="text"></p>
-                <p>Text (Bottom) <input type="text"></p>
-        </div>
-
-        <button
         </form>
 
+        <div class="input-field-container">
+        <form method="dialog">
+            <input id="upload" type="file" accept="image/*"><br>
+            <label for="title">Title </label><input id="titleInput" type="text" name="title" required><br>
+            <label for="keywords">Keywords</label><input id="keywordsInput" type="text" name="keywords" required><br>
+            <label for="textTop">Text (Top) </label><input id="textTopInput" type="text" name="textTop" required><br>
+            <label for="textBot">Text (Bot) </label><input id="textBotInput" type="text" name="textBot"><br>
+            
+            <button type="submit" value="save">Create</button>
+        </form>
+        </div>
     </body>
+
+    <script src="scripts/create.js"></script>
 </html>
