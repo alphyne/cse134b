@@ -17,7 +17,12 @@
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
 
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.css" />
+
     <script src="/scripts/index.js"></script>
+    <script src="/scripts/authentication.js"></script>
+    
     <script>
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -26,18 +31,11 @@
       });
     </script>
   </head>
-  
   <body>
     <a href="/"><h1>MemeMaster</h1></a>
-    
-    <a href="/sign-in"><button">Sign In</button></a>
-    
-    <!--
-    <form> 
-      <input id="email" type="email" required>
-      <input id="password" type="password" required>
-      <button id="submit">Submit</button>
-    </form> 
-    -->
+    <h2>Sign In</h2>
+
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Loading...</div>
   </body>
 </html>

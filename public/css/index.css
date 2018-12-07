@@ -1,0 +1,9 @@
+body {
+  font-family: "Avenir";
+}
+
+input {
+  background-color: #eee;
+  border: none;
+  padding: 5px;
+}
