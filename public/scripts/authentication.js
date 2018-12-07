@@ -29,6 +29,8 @@ var ui = new firebaseui.auth.AuthUI(firebase.auth());
 ui.start('#firebaseui-auth-container', uiConfig);
 
 
+
+
 document.getElementById('submit').addEventListener('click', function() {
   let email = getElementById('email').innerHTML;
   let password = getElementById('password').innerHTML;

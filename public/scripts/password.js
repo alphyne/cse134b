@@ -1,5 +1,5 @@
 /*
- * change password
+ * Change password
  */
 function changePassword() {
   firebase.auth().onAuthStateChanged(function(user) {
@@ -20,7 +20,7 @@ function changePassword() {
       // An error happened
       alert(error);
 
-      // If re-authentication needed, show reauth form
+      // If re-authentication needed, show re-auth form
       if (error.code == "auth/requires-recent-login") {
         document.getElementById('reauth').style.display = "block";
       }
@@ -29,6 +29,9 @@ function changePassword() {
   });
 }
 
+/*
+ * Re-authentication
+ */
 function reauth() {
   document.getElementById('password-form').style.display = "none";
   firebase.auth().onAuthStateChanged(function(user) {

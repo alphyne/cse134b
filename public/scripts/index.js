@@ -5,10 +5,12 @@ var config = {
   authDomain: "mememaster-ej.firebaseapp.com",
   databaseURL: "https://mememaster-ej.firebaseio.com",
   projectId: "mememaster-ej",
-  storageBucket: "",
+  storageBucket: "/",
   messagingSenderId: "815545865797"
 };
 firebase.initializeApp(config);
+
+//setAccountName();
 
 function getUser() {
   firebase.auth().onAuthStateChanged(function(user) {
@@ -19,6 +21,14 @@ function getUser() {
       // No user is signed in.
       console.log('No user signed in');
     }
+  });
+}
+
+function setAccountName() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      document.getElementById('account_name').innerHTML = user.displayName;
+    } 
   });
 }
 
