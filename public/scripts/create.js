@@ -1,3 +1,5 @@
+
+// Config to firebase
 var config = {
     apiKey: "AIzaSyB5c9mjm-mf1eViUdp-jc-PFcr8bTFgLTg",
     authDomain: "mememaster-ej.firebaseapp.com",
@@ -7,8 +9,15 @@ var config = {
     messagingSenderId: "815545865797"
   };
   firebase.initializeApp(config);
-//Initizae the firebase app
 
+var storage = firebase.storage();
+
+var storageRef = storage.ref();
+
+var 
+
+// Below is from codepen example
+/*
 var email="test@test.com"
 var password="testtest123"
 firebase.auth().signInWithEmailAndPassword(email,password)
@@ -75,4 +84,4 @@ input.addEventListener('change',function(){
 });
  }
               //Prepare the task for upload
- });
+ });*/
