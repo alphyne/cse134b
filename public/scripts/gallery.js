@@ -110,7 +110,7 @@ function moveToTrash(index){
         let i;
         for (i = length; i >= 0; i--) {
           if(i == trash_index){
-            curr_meme_object = memes[indices[i]];
+            var curr_meme_object = memes[indices[i]];
 
             console.log(curr_meme_object);
 
@@ -118,10 +118,10 @@ function moveToTrash(index){
 
             console.log(curr_meme_object);
 
-            var newPostKey = firebase.database().ref().child('memes').push().key;
+            var newPostKey = firebase.database().ref().child(`users/${uid}/memes`).push().key;
 
             var updates = {};
-            updates['/memes/' + newPostKey] = curr_meme_object;
+            updates[`users/+${uid}/memes/` + newPostKey] = curr_meme_object;
 
             return firebase.database().ref().update(updates);
           }
