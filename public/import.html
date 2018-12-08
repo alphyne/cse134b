@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Import | MemeMaster</title>
+   
+    
+
     <link rel="stylesheet" type="text/css" href="/css/index.css">
 
     <!-- update the version number as needed -->
@@ -17,10 +20,11 @@
     <script defer src="/__/firebase/init.js"></script>
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+    
     <!-- index.js -->
     <script src="/scripts/index.js"></script>
     <!-- database.js -->
-    <script src="/scripts/database.js"></script>
+    <script src="/scripts/import.js"></script>
 
     <script>
       firebase.auth().onAuthStateChanged(function(user) {
@@ -33,11 +37,10 @@
   </head>
   
   <body>
-    <!--#include file="header.html"-->
     <script src="header.js"></script>
 
     <div id="import">
-      <a href="/"><h1>MemeMaster</h1></a>
+      <a href="/home"><h1>MemeMaster</h1></a>
       <h2>Import Meme</h2>
       
       <div id="file_preview_container">

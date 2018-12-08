@@ -49,3 +49,19 @@ function signOut() {
     console.log(error);
   });
 }
+
+function getUserId() {
+  /*
+  return firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+     // console.log(user.uid);
+      return user.uid;
+      
+    } else {
+     // console.log('getUserId() = null');
+      return null;
+    }
+  });
+  */
+ return firebase.auth().currentUser.uid;
+}

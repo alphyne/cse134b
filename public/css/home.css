@@ -126,3 +126,7 @@ table {
   .dropdown:hover .dropdown-content {
     display: block;
   }
+
+  #meme_gallery img {
+    max-width: 300px;
+  }
