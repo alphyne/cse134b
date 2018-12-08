@@ -146,4 +146,4 @@ function moveToTrash(index){
      console.log('No user logged in; cannot load memes');
     } 
   });
-git s}
+}
