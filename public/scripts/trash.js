@@ -103,8 +103,18 @@ function deleteMeme(index){
         length = length - 1;
         trash_index = index - 1;
 
+        // Set flash trag to true
+        const curr_meme_object = memes[indices[trash_index]];
+
+        // Create and set update
+        const updates = {};
+        updates[`users/${uid}/memes/${indices[trash_index]}`] = null;
+
+
         // Hide trashed object
         document.querySelector(`.meme_${index}`).style.display = "none";
+
+        alert("Your meme has been deleted!");
 
         return firebase.database().ref().update(updates); 
 
@@ -156,6 +166,8 @@ function restoreMeme(index){
 
         // Hide trashed object
         document.querySelector(`.meme_${index}`).style.display = "none";
+
+        alert("Your meme has been restored to the home library!");
 
         return firebase.database().ref().update(updates); 
 

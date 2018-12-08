@@ -114,6 +114,8 @@ function moveToTrash(index){
         // Hide trashed object
         document.querySelector(`.meme_${index}`).style.display = "none";
 
+        alert("Your meme has been moved to the trash!");
+
         return firebase.database().ref().update(updates); 
 
       }, function(error) {
