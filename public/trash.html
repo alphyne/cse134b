@@ -54,12 +54,12 @@
           <div class="meme_container">
               <img class="meme_img" src="" alt="">
               <p class="meme_title"></p>
-              <button class="delete_button" onclick="delete()">Delete</button>
+              <button class="meme_delete_button" onclick="">Delete</button>
+              <button class="meme_restore_button" onclick="">Restore</button>
           </div>
+          <hr>
       </template>
   </div>
-
-
 
 
 
@@ -72,35 +72,6 @@
           // do stuff
           loadMemes();
       }, false);
-  </script>
-
-
-
-  <!-- From HW4 CRUD -->
-
-  <dialog id="deleteDialog">
-    <form method="dialog">
-      <p>Are you sure you want to delete this meme?</p>
-      <button type="reset" id="cancelDeleteBtn">Cancel</button>
-      <button type="submit" value="delete">Delete</button>
-    </form>
-  </dialog>
-
-  <script type="module">
-    import {deleteMovie} from './scripts/movies.js';
-
-    window.editMovie = editMovie;
-    window.deleteMovie = deleteMovie;
-    
-    window.addEventListener('DOMContentLoaded', function () {
-
-      // Cancel delete movie listener
-      document.getElementById('cancelDeleteBtn').addEventListener('click', function () {
-        document.getElementById('deleteDialog').close();
-      }); 
-
-
-    });
   </script>
 </body>
 
