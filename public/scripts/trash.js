@@ -2,7 +2,7 @@
  * Description: Loads all the user's memes onto the home page.
  */
 function loadMemes() {
-  document.getElementById('loader').innerHTML = "Loading trash...";
+  document.getElementById('loader').innerHTML = "Loading...";
   firebase.auth().onAuthStateChanged(function(user) {
     
     if (user) {
@@ -14,12 +14,12 @@ function loadMemes() {
 
         // Return if no memes were found
         if (!memes) {
-          console.log("User has no memes in the trash");
-          document.getElementById('loader').innerHTML = "Your trash is empty.";
+          console.log("User has no memes yet");
+          document.getElementById('loader').innerHTML = "You don't have any memes yet!";
           return;
         }
 
-        const indices = Object.keys(memes);
+        const indices = Object.keys(memes).sort();
         const length = indices.length;
 
         // Loop through all memes backwards
@@ -27,14 +27,16 @@ function loadMemes() {
         for (i = length - 1; i >= 0; i--) {
           const curr_meme = memes[indices[i]];
 
-          if(curr_meme.trash){
+          const curr_meme_index = i+1;
+
+          if(curr_meme.trash) {
             // Retrieve image from cloud storage
             const storage = firebase.storage();
             const path_ref = storage.ref(`${curr_meme.meme_path}`);
 
             // Get img src, set img + title
             path_ref.getDownloadURL().then(function(url) {
-              createMemeNode(curr_meme.title, url);
+              createMemeNode(curr_meme.title, url, curr_meme_index);
             });
           }
         }
@@ -57,14 +59,113 @@ function loadMemes() {
  * Description: Clones the template meme to create a new meme element.
  *    Helper method for loadMemes().
  */
-function createMemeNode(title, url) {
+function createMemeNode(title, url, index) {
   // Clone meme template
   const meme_template = document.getElementById('meme_template').content.cloneNode(true);
+  // Add unique class
+  meme_template.querySelector('.meme_container').classList.add('meme_' + index);
   meme_template.querySelector('.meme_img').src = url;
   // Set title
   meme_template.querySelector('.meme_title').innerText = title;
+  // Set onclick delete function
+  meme_template.querySelector('.meme_delete_button').addEventListener('click', () => deleteMeme(index));
+  // Set onclick restore function
+  meme_template.querySelector('.meme_restore_button').addEventListener('click', () => restoreMeme(index));
   // Append new meme
   const meme_gallery = document.getElementById('meme_gallery');
   meme_gallery.appendChild(meme_template);
 }
 
+/*
+ * Name: deleteMeme
+ * Parameters: index - index of meme to be deleted
+ */
+function deleteMeme(index){
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    
+    if (user) {
+      uid = getUserId();
+      
+      ref = firebase.database().ref(`/users/${uid}/memes`);
+      ref.once('value').then(function(snapshot) {
+        memes = snapshot.val();
+
+        // Return if no memes were found
+        if (!memes) {
+          console.log("User has no memes yet");
+          return;
+        }
+
+        // Calc index
+        indices = Object.keys(memes);
+        length = indices.length;
+        length = length - 1;
+        trash_index = index - 1;
+
+        // Hide trashed object
+        document.querySelector(`.meme_${index}`).style.display = "none";
+
+        return firebase.database().ref().update(updates); 
+
+      }, function(error) {
+        console.log(error.message);
+        return;
+      });
+
+    } else {
+     console.log('No user logged in; cannot load memes');
+    } 
+  });
+}
+
+/*
+ * Name: restoreMeme
+ * Parameters: index - index of meme to be deleted
+ */
+function restoreMeme(index){
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    
+    if (user) {
+      uid = getUserId();
+      
+      ref = firebase.database().ref(`/users/${uid}/memes`);
+      ref.once('value').then(function(snapshot) {
+        memes = snapshot.val();
+
+        // Return if no memes were found
+        if (!memes) {
+          console.log("User has no memes yet");
+          return;
+        }
+
+        // Calc index
+        indices = Object.keys(memes);
+        length = indices.length;
+        length = length - 1;
+        trash_index = index - 1;
+
+        // Set flash trag to true
+        const curr_meme_object = memes[indices[trash_index]];
+        curr_meme_object.trash = false;
+
+        // Create and set update
+        const updates = {};
+        updates[`users/${uid}/memes/${indices[trash_index]}`] = curr_meme_object;
+
+        // Hide trashed object
+        document.querySelector(`.meme_${index}`).style.display = "none";
+
+        return firebase.database().ref().update(updates); 
+
+      }, function(error) {
+        console.log(error.message);
+        return;
+      });
+
+    } else {
+     console.log('No user logged in; cannot load memes');
+    } 
+  });
+}
