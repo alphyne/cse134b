@@ -83,7 +83,8 @@ function saveMemeToDb(title, meme_path, time, keywords) {
     title: title,
     meme_path: meme_path,
     time: time,
-    keywords: keywords
+    keywords: keywords,
+    trash: false
   };
 
   const uid = getUserId();

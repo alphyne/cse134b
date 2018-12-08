@@ -2,9 +2,36 @@
 <html lang="en">
 
 <head>
-    <title>Trash | Meme Master</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trash | MemeMaster</title>
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/5.6.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/5.6.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/5.6.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/5.6.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/5.6.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+    <script src="/scripts/index.js"></script>
+    
+    <script>
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (!user) {
+            window.location.replace('/');
+            } 
+        });
+    </script>
+
+   
 </head>
 
 <body>
@@ -19,6 +46,37 @@
     <div id="navbar-placeholder"></div>
     
   <h1>Trash</h1>
+
+
+
+  <div id="meme_gallery">
+      <template id="meme_template">
+          <div class="meme_container">
+              <img class="meme_img" src="" alt="">
+              <p class="meme_title"></p>
+              <button class="delete_button" onclick="delete()">Delete</button>
+          </div>
+      </template>
+  </div>
+
+
+
+
+
+
+  <script src="/scripts/trash.js"></script>
+
+  <script>
+
+      window.addEventListener("DOMContentLoaded", function() {
+          // do stuff
+          loadMemes();
+      }, false);
+  </script>
+
+
+
+  <!-- From HW4 CRUD -->
 
   <dialog id="deleteDialog">
     <form method="dialog">
