@@ -7,9 +7,15 @@
 }
 
 .input-field-container {
+
     margin-left: 28vw;
 }
 
 .input-field-container input {
     margin-left: 60px;
+}
+
+#canvas {
+    height: 500px;
+    width: 500px;
 }

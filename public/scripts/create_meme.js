@@ -6,12 +6,24 @@ function preview() {
     var reader = new FileReader();
 
     reader.onload = function(e) {
-      document.getElementById('file_preview').src = e.target.result;
+      const canvas = document.getElementById('canvas');
+      console.log(canvas);
+      const context = canvas.getContext('2d');
+      const img = new Image();
+
+      img.onload = function() {
+       // context.drawImage(img, 0,0);
+        context.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
+      };
+
+      img.src = e.target.result;
+      //document.getElementById('file_preview').src = e.target.result;
     }
 
     reader.readAsDataURL(input.files[0]);
   }
 }
+
 
 function resetPreview() {
   document.getElementById('file_preview').src = "";
@@ -22,7 +34,7 @@ function resetMemeForm() {
   resetPreview();
 }
 
-/*
+/* 
  * Upload image to cloud storage
  */
 function uploadFile() {
@@ -118,6 +130,24 @@ function writeUserData(userId, name, email, imageUrl) {
     email: email,
     profile_picture : imageUrl
   }); */
+}
+
+function setText(input_text) {
+  var canvas = document.getElementById("canvas");
+  var ctx = canvas.getContext("2d");
+  var text = input_text;
+  text = text.toUpperCase();
+  ctx.font = "32px Impact";
+
+  ctx.fillStyle = 'black';
+  ctx.strokeStyle = 'white';
+  ctx.lineWidth = 2;
+
+  ctx.fillText(text, 50, 50);
+  ctx.strokeText(text, 50, 50);
+
+  ctx.fill();
+  ctx.stroke();
 }
 
 
