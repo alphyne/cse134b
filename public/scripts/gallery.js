@@ -115,7 +115,7 @@ function moveToTrash(index){
         document.querySelector(`.meme_${index}`).style.display = "none";
 
         return firebase.database().ref().update(updates); 
-        
+
       }, function(error) {
         console.log(error.message);
         return;
