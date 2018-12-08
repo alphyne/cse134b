@@ -118,14 +118,22 @@ function moveToTrash(index){
 
             console.log(curr_meme_object);
 
-            var newPostKey = firebase.database().ref().child(`users/${uid}/memes`).push().key;
+            //var newPostKey = ref.push().key;
+            var newPostKey = firebase.database().ref().child(`/users/${uid}/memes/`).push().key;
 
             //var newPostKey = curr_meme_object.key;
+
+            var key = Object.keys(snapshot.val()[0]);
+
+            console.log(key);
 
             console.log("newPostKey: " + newPostKey);
 
             var updates = {};
-            updates[`users/+${uid}/memes/` + newPostKey] = curr_meme_object;
+            updates[`users/${uid}/memes/` + newPostKey] = curr_meme_object;
+
+            //firebase.database().ref().child(`/users/${uid}/memes` + newPostKey)
+            //.update({ trash: false }); 
 
             return firebase.database().ref().update(updates);
           }

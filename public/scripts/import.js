@@ -79,13 +79,7 @@ function saveMemeToDb(title, meme_path, time, keywords) {
   // Get a reference to the database service
   let database = firebase.database();
 
-  const new_meme = {
-    title: title,
-    meme_path: meme_path,
-    time: time,
-    keywords: keywords,
-    trash: false
-  };
+  
 
   const uid = getUserId();
   if (!uid) {
@@ -96,6 +90,16 @@ function saveMemeToDb(title, meme_path, time, keywords) {
   // Get a key for a new meme
   const memes_key = firebase.database().ref().child(`users/${uid}/memes`);
   const new_meme_key = memes_key.push();
+
+  const new_meme = {
+    title: title,
+    meme_path: meme_path,
+    time: time,
+    keywords: keywords,
+    trash: false,
+    //meme_key: new_meme_key
+  };
+
   new_meme_key.set(new_meme, function(error) {
     if (error) {
       console.log(error.message);
