@@ -123,7 +123,7 @@ function writeUserData(userId, name, email, imageUrl) {
 
 
 function createMeme() {
-  //uploadFile();
+  uploadFile();
  // saveMeme();
 }
 

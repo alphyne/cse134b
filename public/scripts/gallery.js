@@ -28,7 +28,6 @@ function loadMemes() {
         for (i = length - 1; i >= 0; i--) {
           const curr_meme = memes[indices[i]];
 
-<<<<<<< Updated upstream
           const curr_meme_index = i+1;
 
           if(curr_meme.trash == false){
@@ -42,16 +41,6 @@ function loadMemes() {
               createMemeNode(curr_meme.title, url, curr_meme_index);
             });
           }
-=======
-          // Retrieve image from cloud storage
-          const storage = firebase.storage();
-          const path_ref = storage.ref(`${curr_meme.meme_path}`);
-
-          // Get img src, set img + title
-          path_ref.getDownloadURL().then(function(url) {
-            createMemeNode(curr_meme.title, url, i);
-          });
->>>>>>> Stashed changes
         }
         // Hide loader when done
         document.getElementById('loader').style.display = 'none';
@@ -76,11 +65,7 @@ function createMemeNode(title, url, index) {
   // Clone meme template
   const meme_template = document.getElementById('meme_template').content.cloneNode(true);
   // Add unique class
-<<<<<<< Updated upstream
   meme_template.querySelector('.meme_container').classList.add('meme-' + index);
-=======
-  meme_template.querySelector('.meme_container').classList.add(`meme-${index}`);
->>>>>>> Stashed changes
   meme_template.querySelector('.meme_img').src = url;
   // Set title
   meme_template.querySelector('.meme_title').innerText = title;
@@ -161,4 +146,4 @@ function moveToTrash(index){
      console.log('No user logged in; cannot load memes');
     } 
   });
-}
+git s}
