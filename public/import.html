@@ -21,6 +21,8 @@
     <script src="/scripts/index.js"></script>
     <!-- database.js -->
     <script src="/scripts/database.js"></script>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
     <script>
       firebase.auth().onAuthStateChanged(function(user) {
@@ -33,11 +35,17 @@
   </head>
   
   <body>
-    <!--#include file="header.html"-->
-    <script src="header.js"></script>
+
+    <!-- Nav bar -->
+    <script>
+        $(function(){
+          $("#navbar-placeholder").load("navbar.html");
+        });
+    </script>
+
+    <div id="navbar-placeholder"></div>
 
     <div id="import">
-      <a href="/"><h1>MemeMaster</h1></a>
       <h2>Import Meme</h2>
       
       <div id="file_preview_container">
