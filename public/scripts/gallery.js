@@ -123,9 +123,6 @@ function moveToTrash(index){
 
             //var newPostKey = curr_meme_object.key;
 
-            var key = Object.keys(snapshot.val()[0]);
-
-            console.log(key);
 
             console.log("newPostKey: " + newPostKey);
 
