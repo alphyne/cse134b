@@ -120,6 +120,10 @@ function moveToTrash(index){
 
             var newPostKey = firebase.database().ref().child(`users/${uid}/memes`).push().key;
 
+            //var newPostKey = curr_meme_object.key;
+
+            console.log("newPostKey: " + newPostKey);
+
             var updates = {};
             updates[`users/+${uid}/memes/` + newPostKey] = curr_meme_object;
 
