@@ -101,7 +101,7 @@ function moveToTrash(index){
         length = indices.length;
         length = length - 1;
 
-        trash_index = index = 1;
+        trash_index = index - 1;
 
         console.log ('trash_index: ' + trash_index)
         console.log('length - 1: ' + length);
