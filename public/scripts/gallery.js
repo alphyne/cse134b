@@ -2,6 +2,7 @@
  * Description: Loads all the user's memes onto the home page.
  */
 function loadMemes() {
+  document.getElementById('loader').innerHTML = "Loading...";
   firebase.auth().onAuthStateChanged(function(user) {
     
     if (user) {
@@ -14,10 +15,12 @@ function loadMemes() {
         // Return if no memes were found
         if (!memes) {
           console.log("User has no memes yet");
+          document.getElementById('loader').innerHTML = "You don't have any memes yet!";
           return;
         }
 
-        const indices = Object.keys(memes);
+        const indices = Object.keys(memes).sort();
+        console.log(indices);
         const length = indices.length;
 
         // Loop through all memes backwards
@@ -25,6 +28,7 @@ function loadMemes() {
         for (i = length - 1; i >= 0; i--) {
           const curr_meme = memes[indices[i]];
 
+<<<<<<< Updated upstream
           const curr_meme_index = i+1;
 
           if(curr_meme.trash == false){
@@ -38,14 +42,23 @@ function loadMemes() {
               createMemeNode(curr_meme.title, url, curr_meme_index);
             });
           }
+=======
+          // Retrieve image from cloud storage
+          const storage = firebase.storage();
+          const path_ref = storage.ref(`${curr_meme.meme_path}`);
+
+          // Get img src, set img + title
+          path_ref.getDownloadURL().then(function(url) {
+            createMemeNode(curr_meme.title, url, i);
+          });
+>>>>>>> Stashed changes
         }
+        // Hide loader when done
+        document.getElementById('loader').style.display = 'none';
 
       }, function(error) {
         console.log(error.message);
       });
-
-      // Hide loader when done
-      document.getElementById('loader').style.display = 'none';
 
     } else {
      console.log('No user logged in; cannot load memes');
@@ -63,7 +76,11 @@ function createMemeNode(title, url, index) {
   // Clone meme template
   const meme_template = document.getElementById('meme_template').content.cloneNode(true);
   // Add unique class
+<<<<<<< Updated upstream
   meme_template.querySelector('.meme_container').classList.add('meme-' + index);
+=======
+  meme_template.querySelector('.meme_container').classList.add(`meme-${index}`);
+>>>>>>> Stashed changes
   meme_template.querySelector('.meme_img').src = url;
   // Set title
   meme_template.querySelector('.meme_title').innerText = title;

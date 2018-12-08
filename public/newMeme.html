@@ -3,9 +3,22 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>MemeMaster</title>
+        <title>Create Meme | MemeMaster</title>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
         <link rel="stylesheet" type="text/css" href="css/home.css">
         <link rel="stylesheet" type="text/css" href="css/add.css">
+
+        <!-- update the version number as needed -->
+        <script defer src="/__/firebase/5.6.0/firebase-app.js"></script>
+        <!-- include only the Firebase features as you need -->
+        <script defer src="/__/firebase/5.6.0/firebase-auth.js"></script>
+        <script defer src="/__/firebase/5.6.0/firebase-database.js"></script>
+        <script defer src="/__/firebase/5.6.0/firebase-messaging.js"></script>
+        <script defer src="/__/firebase/5.6.0/firebase-storage.js"></script>
+        <!-- initialize the SDK after all desired features are loaded -->
+        <script defer src="/__/firebase/init.js"></script>
+        <!-- Firebase -->
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
         <!-- jquery -->
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
@@ -30,20 +43,37 @@
             <canvas id="canvas"></canvas>
         </div>
 
-        <div class="input-field-container">
-        <form method="dialog">
-            <input id="upload" type="file" accept="image/*"><br>
-            <label for="title">Title </label><input id="titleInput" type="text" name="title" required><br>
-            <label for="keywords">Keywords</label><input id="keywordsInput" type="text" name="keywords" required><br>
-            <label for="textTop">Text (Top) </label><input id="textTopInput" type="text" name="textTop" required><br>
-            <label for="textBot">Text (Bot) </label><input id="textBotInput" type="text" name="textBot"><br>
+
+        <div id="create">
+            <h2>Create Meme</h2>
             
-            <button type="submit" value="save">Create</button>
-        </form>
-        </div>
+            <div id="file_preview_container">
+                <img id="file_preview" src="" alt="">
+            </div>
+        
+            <form id="new_meme_form">
+                <label for="file_input">Choose from file...</label>
+                <input type="file" id="file_input" accept="image/*" required><br>
+        
+                <label for="title_input">Title </label><input id="title_input" type="text" name="title" required><br>
+                <label for="keywords_input">Keywords </label><input id="keywords_input" type="text" name="keywords" required><br>
+                <label for="text_top_input">Text (Top) </label><input id="text_top_input" type="text" name="keywords" required><br>
+                <label for="text_bottom_input">Text (Bottom) </label><input id="text_bottom_input" type="text" name="keywords" required><br>
+        
+                <button id="submit_btn" type="submit">Submit</button>
+            </form> <!-- /#new_meme_form -->
+        
+        </div> <!-- /#import -->
+
     </body>
 
     <script src="scripts/index.js"></script>
-    <script src="scripts/meme.js"></script>
-    <script src="scripts/create.js"></script>
+    <script src="scripts/create_meme.js"></script>
+    <script>
+        document.getElementById('file_input').addEventListener('change', preview);
+        document.getElementById('new_meme_form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            createMeme();
+        });
+    </script>
 </html>

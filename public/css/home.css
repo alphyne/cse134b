@@ -58,3 +58,6 @@ table {
     background-color: #D9F9FE;
 }
 
+#meme_gallery img {
+	max-width: 300px;
+}
