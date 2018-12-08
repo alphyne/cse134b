@@ -21,6 +21,7 @@
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
         <script src="/scripts/index.js"></script>
+        
         <script>
             firebase.auth().onAuthStateChanged(function(user) {
                 if (!user) {
@@ -28,6 +29,8 @@
                 } 
             });
         </script>
+
+       
     </head>
     <body>
 
@@ -40,7 +43,30 @@
     
         <div id="navbar-placeholder"></div>
 
+        <div id="loader"><h2>Loading memes...</h2></div>
+
+        <div id="meme_gallery">
+            <template id="meme_template">
+                <div class="meme_container">
+                    <img class="meme_img" src="" alt="">
+                    <p class="meme_title"></p>
+                </div>
+            </template>
+        </div>
+        
 
 
+        <script src="/scripts/gallery.js"></script>
+
+        <script>
+   
+            window.addEventListener("DOMContentLoaded", function() {
+                // do stuff
+                loadMemes();
+            }, false);
+
+            
+                
+        </script>
     </body>
 </html>
