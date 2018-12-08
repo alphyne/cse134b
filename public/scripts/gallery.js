@@ -20,7 +20,6 @@ function loadMemes() {
         }
 
         const indices = Object.keys(memes).sort();
-        console.log(indices);
         const length = indices.length;
 
         // Loop through all memes backwards
@@ -30,8 +29,7 @@ function loadMemes() {
 
           const curr_meme_index = i+1;
 
-          if(curr_meme.trash == false){
-
+          if(!curr_meme.trash) {
             // Retrieve image from cloud storage
             const storage = firebase.storage();
             const path_ref = storage.ref(`${curr_meme.meme_path}`);
@@ -65,7 +63,7 @@ function createMemeNode(title, url, index) {
   // Clone meme template
   const meme_template = document.getElementById('meme_template').content.cloneNode(true);
   // Add unique class
-  meme_template.querySelector('.meme_container').classList.add('meme-' + index);
+  meme_template.querySelector('.meme_container').classList.add('meme_' + index);
   meme_template.querySelector('.meme_img').src = url;
   // Set title
   meme_template.querySelector('.meme_title').innerText = title;
@@ -99,47 +97,28 @@ function moveToTrash(index){
           return;
         }
 
+        // Calc index
         indices = Object.keys(memes);
         length = indices.length;
         length = length - 1;
+        trash_index = index - 1;
 
-        trash_index = index = 1;
+        // Set flash trag to true
+        const curr_meme_object = memes[indices[trash_index]];
+        curr_meme_object.trash = true;
 
-        console.log ('trash_index: ' + trash_index)
-        console.log('length - 1: ' + length);
+        // Create and set update
+        const updates = {};
+        updates[`users/${uid}/memes/${indices[trash_index]}`] = curr_meme_object;
 
-        // Loop through all memes backwards
-        let i;
-        for (i = length; i >= 0; i--) {
-          if(i == trash_index){
-            var curr_meme_object = memes[indices[i]];
+        // Hide trashed object
+        document.querySelector(`.meme_${index}`).style.display = "none";
 
-            console.log(curr_meme_object);
-
-            curr_meme_object.trash = true;
-
-            console.log(curr_meme_object);
-
-            //var newPostKey = ref.push().key;
-            var newPostKey = firebase.database().ref().child(`/users/${uid}/memes/`).push().key;
-
-            //var newPostKey = curr_meme_object.key;
-
-
-            console.log("newPostKey: " + newPostKey);
-
-            var updates = {};
-            updates[`users/${uid}/memes/` + newPostKey] = curr_meme_object;
-
-            //firebase.database().ref().child(`/users/${uid}/memes` + newPostKey)
-            //.update({ trash: false }); 
-
-            return firebase.database().ref().update(updates);
-          }
-        }
-
+        return firebase.database().ref().update(updates); 
+        
       }, function(error) {
         console.log(error.message);
+        return;
       });
 
     } else {

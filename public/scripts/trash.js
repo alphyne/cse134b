@@ -2,6 +2,7 @@
  * Description: Loads all the user's memes onto the home page.
  */
 function loadMemes() {
+  document.getElementById('loader').innerHTML = "Loading trash...";
   firebase.auth().onAuthStateChanged(function(user) {
     
     if (user) {
@@ -13,7 +14,8 @@ function loadMemes() {
 
         // Return if no memes were found
         if (!memes) {
-          console.log("User has no memes yet");
+          console.log("User has no memes in the trash");
+          document.getElementById('loader').innerHTML = "Your trash is empty.";
           return;
         }
 
@@ -36,13 +38,12 @@ function loadMemes() {
             });
           }
         }
+        // Hide loader when done
+        document.getElementById('loader').style.display = 'none';
 
       }, function(error) {
         console.log(error.message);
       });
-
-      // Hide loader when done
-      document.getElementById('loader').style.display = 'none';
 
     } else {
      console.log('No user logged in; cannot load memes');
