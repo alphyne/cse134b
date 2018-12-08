@@ -10,14 +10,17 @@ var config = {
   };
   firebase.initializeApp(config);
 
-var storage = firebase.storage();
+/*var storage = firebase.storage();
 
 var storageRef = storage.ref();
 
-var 
+var memesRef = storageRef.child('memes');
+
+var fileName = 'u1dTZoMxbd1FNqVK23cH';*/
+
 
 // Below is from codepen example
-/*
+
 var email="test@test.com"
 var password="testtest123"
 firebase.auth().signInWithEmailAndPassword(email,password)
@@ -84,4 +87,4 @@ input.addEventListener('change',function(){
 });
  }
               //Prepare the task for upload
- });*/
+ });

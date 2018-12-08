@@ -1,4 +1,4 @@
-<!-- Navigation Bar -->
+document.write(
 <div class="navbar">
     <a id="navbar-home" href="home">Meme Master</a>
     
@@ -17,3 +17,4 @@
         </div>
     </div>  
 </div>
+);

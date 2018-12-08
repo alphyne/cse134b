@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/1.0.8/purify.min.js"></script>
+
+  <title>Movie CRUD</title>
+</head>
+
+<body>
+  <h1>Trash</h1>
+
+  <dialog id="deleteDialog">
+    <form method="dialog">
+      <p>Are you sure you want to delete this meme?</p>
+      <button type="reset" id="cancelDeleteBtn">Cancel</button>
+      <button type="submit" value="delete">Delete</button>
+    </form>
+  </dialog>
+
+  <script type="module">
+    import {deleteMovie} from './scripts/movies.js';
+
+    window.editMovie = editMovie;
+    window.deleteMovie = deleteMovie;
+    
+    window.addEventListener('DOMContentLoaded', function () {
+
+      // Cancel delete movie listener
+      document.getElementById('cancelDeleteBtn').addEventListener('click', function () {
+        document.getElementById('deleteDialog').close();
+      }); 
+
+
+    });
+  </script>
+</body>
+
+</html>

@@ -73,6 +73,7 @@ function ifFileExists(file_name) {
 function saveMeme() {
   // Get a reference to the database service
   let database = firebase.database();
+
 }
 
 function importMeme() {
