@@ -2,6 +2,7 @@
  * Description: Loads all the user's memes onto the home page.
  */
 function loadMemes() {
+  document.getElementById('loader').innerHTML = "Loading...";
   firebase.auth().onAuthStateChanged(function(user) {
     
     if (user) {
@@ -14,10 +15,12 @@ function loadMemes() {
         // Return if no memes were found
         if (!memes) {
           console.log("User has no memes yet");
+          document.getElementById('loader').innerHTML = "You don't have any memes yet!";
           return;
         }
 
-        const indices = Object.keys(memes);
+        const indices = Object.keys(memes).sort();
+        console.log(indices);
         const length = indices.length;
 
         // Loop through all memes backwards
@@ -39,13 +42,12 @@ function loadMemes() {
             });
           }
         }
+        // Hide loader when done
+        document.getElementById('loader').style.display = 'none';
 
       }, function(error) {
         console.log(error.message);
       });
-
-      // Hide loader when done
-      document.getElementById('loader').style.display = 'none';
 
     } else {
      console.log('No user logged in; cannot load memes');
